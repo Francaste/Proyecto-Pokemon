@@ -1,16 +1,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
+
+  void* volver_menu(void* attr);
+  void* volverMenu();
+
 //funciones get line
-
-
 char *getString(){
   char *cadena=NULL;
  size_t ntotal=0;
+ 
   int nleidos= getline(&cadena, &ntotal, stdin);
   
-  if(nleidos<0){printf("error de lectura");
+  if(nleidos<0){
+    //printf("error de lectura");
+  volverMenu();
   
+  exit(0);
   
   }
   else{
