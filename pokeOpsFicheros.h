@@ -2,6 +2,7 @@
  #include <stdio.h>
  #include <string.h>
  
+ 
  //prototipos
  pokemon* freeList(pokemon *pokebeza,int* pokenum);
  void escribir_fichero_string(FILE* fichero,char* ptr,int length);

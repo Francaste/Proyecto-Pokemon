@@ -14,7 +14,12 @@
     poke2->points.hp-=danoA2;//calculamos nueva vida de poke2
     printf("Pokemon:%s----Vida:%d\nPokemon:%s----Vida:%d\n",poke1->s_name,
 	       poke1->points.hp,poke2->s_name,poke2->points.hp);
+    if(poke2->points.hp<=0){
+    printf("%s ha sido debilitado\n\n",poke2->s_name); 
     
+    return;
+   }
+   
     sleep(1);//espera 1 segundo para seguir
     printf("%s ha atacado a %s\n",poke2->s_name,poke1->s_name);
     danoA1=(((86+rand()%15)*poke2->points.attack[T_NORMAL])/poke1->points.defense[T_NORMAL])/10;
@@ -94,6 +99,9 @@
 	printf("Comenzando combate\n\n");
 	while(pokelegido1->points.hp>0&&pokelegido2->points.hp>0){
 	  combateUpdate(pokelegido1,pokelegido2);
+	  if(pokelegido2->points.hp<=0){
+	   break; 
+	  }
 	}
 	printf("Combate finalizado\n");
 	

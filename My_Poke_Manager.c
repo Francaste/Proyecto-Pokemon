@@ -17,7 +17,7 @@
     #include "pokeFuncionAyuda.h"
     #include "pokeContador.h"
     #include "pokeSave.h"
-    //#include "pokeVolverMenu.h"
+    #include "pokeVolverMenu.h"
     #define NUMTHREADS 3
     
     
@@ -53,7 +53,8 @@
      void* volver_menu(void* attr);
      
      
-    
+     
+   
     //17/11/16
     int main(){
       int read;
@@ -73,7 +74,7 @@
       int* pokenum=&valor;
       
      
-      void *pokeTema(){
+      void* pokeTema(){
 	if(pokebeza==NULL){
 	  printf("Lista vacia, teclee otra opcion\n");
 	  
@@ -86,9 +87,9 @@
 	}
 	return NULL;
       }
-      
-    
+          
    	do{
+	   pthread_create(&hilos[0],NULL,pokeTema,NULL);
 	  //menu:
 	  menu();
 	  printf("Teclee una opción\n");
