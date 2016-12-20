@@ -60,24 +60,15 @@
 	fseek(fichero,0,SEEK_END);
 	
 	escribir_fichero_entero(fichero,pokactual->id);//escribe id
-	printf("Id:%d\n",pokactual->id);
 	escribir_fichero_entero(fichero,pokactual->size_name);//escribe el tamaño del nombre
-	printf("Size Name:%d\n",pokactual->size_name);
 	escribir_fichero_string(fichero,pokactual->s_name,pokactual->size_name);//escribe nombre
-	printf("Name:%s\n",pokactual->s_name);
-	escribir_fichero_string(fichero,"",1);
+	 //escribir_fichero_string(fichero,"",1);
 	escribir_fichero_entero(fichero,pokactual->points.hp);//escribe la vida
-	printf("Hp:%d\n",pokactual->points.hp);
 	escribir_fichero_entero(fichero,pokactual->points.speed);//escribe la velocidad
-	printf("Speed:%d\n",pokactual->points.speed);
 	escribir_fichero_entero(fichero,pokactual->points.attack[0]);//escribe el primer ataque
-	printf("Attack:%d\n",pokactual->points.attack[0]);
 	escribir_fichero_entero(fichero,pokactual->points.attack[1]);//escribe el segundo ataque
-	printf("Sp Attack:%d\n",pokactual->points.attack[1]);
 	escribir_fichero_entero(fichero,pokactual->points.defense[0]);//escribe la primera defensa
-	printf("Defense:%d\n",pokactual->points.defense[0]);
 	escribir_fichero_entero(fichero,pokactual->points.defense[1]);//escribe la segunda defensa
-	printf("Sp Defense:%d\n\n",pokactual->points.defense[1]);
 	
 	pokactual->next=poke_Mantienenext;//recuperamos next y prev
 	pokactual->prev=poke_Mantieneprev;

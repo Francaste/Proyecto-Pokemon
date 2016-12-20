@@ -15,6 +15,9 @@
 	pokeref=pokeliminar->next;
 	printf("Eliminando:\nNombre:%s ID:%d\n",pokeliminar->s_name,pokeliminar->id);
 	*pokenum=pokeReducir(pokenum);
+	if(*pokenum<0){
+	  *pokenum=0;
+	}
 	free(pokeliminar);
 	pokeliminar = pokeref;
 	}

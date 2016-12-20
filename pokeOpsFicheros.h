@@ -11,7 +11,6 @@
  void escribe_pokemon(FILE* fichero, pokemon* pokactual);//escribe cada parametro del pokemon
  pokemon* lee_pokemon(FILE* fichero, pokemon* pokactual);//lee cada parametro del pokemon
  
- 
  void escribe_pokenum(int pokenum){
    
    FILE* fichero;//variable fichero
@@ -128,10 +127,9 @@
      while(pokeindice->next!=NULL){
        pokeindice=pokeindice->next;
      }
-     pokeindice->next=pokenuevo;
      
      pokenuevo=lee_pokemon(fichero,pokenuevo);
-     
+     pokeindice->next=pokenuevo;
      pokenuevo->next=NULL;
      pokenuevo->prev=pokeindice;
      
@@ -159,6 +157,7 @@
      rewind(fichero);*/
      
      
+     
      //int pokenum=(int)(tamano/tamano_Leer);//numero de pokemon leidos
      printf("Numero de Pokemon: %d\n\n\n",*pokenum);
      int tamano_Leer=sizeof(pokemon);//tamaño primer poke
@@ -167,7 +166,7 @@
        pokemon *poke=malloc(sizeof(pokemon));;
        int i=0; 
        char *nombre;
-       
+       //fseek(fichero,sizeof(int),SEEK_SET);
        while(nombre!=NULL){
 	 printf("Hace algo\n");
 	 fseek(fichero,(tamano_Leer*i),SEEK_SET);

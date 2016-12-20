@@ -4,14 +4,11 @@
     #include <unistd.h>
     
  
-    /*void volver_menu(){
+    void* volver_menu(void* attr){
       int input;
-      while(1){//evalua siempre
-	
-	if(input=getchar()==EOF){
-	
-	}
-	
+      while(input=getchar()!=EOF){//evalua siempre
+      input=getchar();
       }
-      
-    }*/
+       printf("Volviendo al menú\n");
+       return attr;
+    }

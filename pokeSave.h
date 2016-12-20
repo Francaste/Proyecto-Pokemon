@@ -5,15 +5,11 @@
   #include <string.h>
 
  
-  
 
   void pokeSave(pokemon* pokebeza){
-    if(pokebeza==NULL){
-	printf("Lista vacia\n");
-	return;
-        }else{
+    
         FILE* fichero;//variable fichero
-	fichero=fopen("##autosave.dat", "a+");//abre o crea fichero lista y escribe
+	fichero=fopen("##autosave.dat", "w+");//abre o crea fichero lista y escribe
 	if(fichero!=NULL) {//si hay algo en el fichero escribe
 	pokemon* pokactual=pokebeza;//tenemos el pokemon actual
 			
@@ -21,7 +17,7 @@
 	
 	 escribe_pokemon(fichero, pokactual);
 	
-	 printf("Escribiendo Pokemon:%s \n",pokactual->s_name);
+	 
 		 
 	 pokactual=pokactual->next;
 	}
@@ -35,16 +31,18 @@
 	return;
 	}
 	
-      }
+      
      
   }
   void* saveActivo(void* pokebeza){
+    
     while(1){
       
       pokeSave(pokebeza);
-      sleep(10);
-      
-    }
-    pthread_exit(0);
+      sleep(1);
+	}
+	return NULL;
     
   }
+
+     

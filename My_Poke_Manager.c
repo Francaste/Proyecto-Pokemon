@@ -17,8 +17,8 @@
     #include "pokeFuncionAyuda.h"
     #include "pokeContador.h"
     #include "pokeSave.h"
-    #include "pokeVolverMenu.h"
-    
+    //#include "pokeVolverMenu.h"
+    #define NUMTHREADS 3
     
     
     //prototipos de funciones
@@ -47,9 +47,12 @@
     int pokeAumentar(int* pokenum);
     int pokeReducir(int* pokenum);
     void pokeSave(pokemon* pokebeza);
-    void* saveActivo();
-     int leer_fichero_pokenum(int pokenum);
+    int leer_fichero_pokenum(int pokenum);
     void escribe_pokenum(int pokenum);
+     void* saveActivo(void* pokebeza);
+     void* volver_menu(void* attr);
+     
+     
     
     //17/11/16
     int main(){
@@ -57,20 +60,36 @@
       char* salirNo;
       char s='s';
       char S='S';
+      pthread_t hilos[NUMTHREADS];
+     
+      
+      
       pokemon* pokebeza=malloc(sizeof(pokemon));
+      
       pokebeza=NULL;
+      
       salirNo="a";
       int valor=0;
       int* pokenum=&valor;
       
-      /*pthread_t tid;
-      pthread_attr_t attr;*/
-
      
-	    
-      
-   	do{
+      void *pokeTema(){
+	if(pokebeza==NULL){
+	  printf("Lista vacia, teclee otra opcion\n");
 	  
+	}else{
+	  while(1){
+	    pokemon* poke=pokebeza;
+	    pthread_create(&hilos[2],NULL,saveActivo,(void*)poke);
+	    sleep(1);
+	  }
+	}
+	return NULL;
+      }
+      
+    
+   	do{
+	  //menu:
 	  menu();
 	  printf("Teclee una opción\n");
 	  read=data_read();
@@ -111,8 +130,9 @@
 	      break;
 	    case 8://9/12/16
 	      printf("Se importará lista de Pokemon nueva\n");
+	      if(*pokenum==0){
 	      *pokenum=leer_fichero_pokenum(*pokenum);
-	     
+	      }
 	      pokebeza=importar_pokemon_fichero(pokebeza,pokenum);
 	      break;
 	      
@@ -124,15 +144,22 @@
 	      mostrar_pokemon_corruptos(pokebeza);
 	      break;
 	    case 11://18/12/16
-	      printf("Activando Autosalvado...\n");
+	      
+	    pthread_create(&hilos[1],NULL,pokeTema,NULL);
+	    
+	      
+	    //  pthread_mutex_unlock(&acabado);
+	      
 	     
 	      break;
+	     
 	    case 12:
 	      pokeRevivir(pokebeza);
 	      break;
 	    case 13:
 	      pokebeza=freeList(pokebeza,pokenum);
-	      break;    
+	      break;
+	       
 	  }
 	  
 	  
@@ -144,4 +171,6 @@
 	
       }
       
+      
+    
       
